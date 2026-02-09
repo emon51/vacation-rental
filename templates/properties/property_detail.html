@@ -1,0 +1,167 @@
+{% extends 'properties/base.html' %}
+
+{% block title %}
+{{ property.title }} - Vacation Rentals
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .property-detail {
+        max-width: 900px;
+        margin: 0 auto;
+    }
+
+    .back-link {
+        display: inline-block;
+        margin-bottom: 20px;
+        color: #3498db;
+        text-decoration: none;
+    }
+
+    .back-link:hover {
+        text-decoration: underline;
+    }
+
+    .property-image {
+        width: 100%;
+        height: 500px;
+        object-fit: cover;
+        border-radius: 8px;
+        margin-bottom: 30px;
+    }
+
+    .property-header {
+        margin-bottom: 20px;
+    }
+
+    .property-header h2 {
+        color: #2c3e50;
+        margin-bottom: 10px;
+        font-size: 2rem;
+    }
+
+    .property-location {
+        color: #7f8c8d;
+        font-size: 1.1rem;
+        margin-bottom: 15px;
+    }
+
+    .property-price {
+        font-size: 2rem;
+        color: #27ae60;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+
+    .property-price span {
+        font-size: 1rem;
+        color: #7f8c8d;
+    }
+
+    .property-stats {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        padding: 20px;
+        background: #ecf0f1;
+        border-radius: 8px;
+        margin-bottom: 30px;
+    }
+
+    .stat-item {
+        text-align: center;
+    }
+
+    .stat-item .icon {
+        font-size: 2rem;
+        margin-bottom: 5px;
+    }
+
+    .stat-item .label {
+        color: #7f8c8d;
+        font-size: 0.9rem;
+    }
+
+    .stat-item .value {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #2c3e50;
+    }
+
+    .property-description {
+        margin-bottom: 30px;
+    }
+
+    .property-description h3 {
+        color: #2c3e50;
+        margin-bottom: 15px;
+    }
+
+    .property-description p {
+        line-height: 1.8;
+        color: #555;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="property-detail">
+
+    <a href="{% url 'properties:property-list' %}" class="back-link">
+        ← Back to Search
+    </a>
+
+    {% with property.images.first as image %}
+        {% if image %}
+            <img
+                src="{{ image.image_url }}"
+                alt="{{ property.title }}"
+                class="property-image">
+        {% else %}
+            <img
+                src="https://via.placeholder.com/900x500"
+                alt="No image available"
+                class="property-image">
+        {% endif %}
+    {% endwith %}
+
+    <div class="property-header">
+        <h2>{{ property.title }}</h2>
+
+        <p class="property-location">
+            📍 {{ property.location }}
+        </p>
+
+        <div class="property-price">
+            ${{ property.price_per_night }}
+            <span>/night</span>
+        </div>
+    </div>
+
+    <div class="property-stats">
+        <div class="stat-item">
+            <div class="icon">🛏️</div>
+            <div class="label">Bedrooms</div>
+            <div class="value">{{ property.bedrooms }}</div>
+        </div>
+
+        <div class="stat-item">
+            <div class="icon">🚿</div>
+            <div class="label">Bathrooms</div>
+            <div class="value">{{ property.bathrooms }}</div>
+        </div>
+
+        <div class="stat-item">
+            <div class="icon">👥</div>
+            <div class="label">Max Guests</div>
+            <div class="value">{{ property.max_guests }}</div>
+        </div>
+    </div>
+
+    <div class="property-description">
+        <h3>Description</h3>
+        <p>{{ property.description }}</p>
+    </div>
+
+</div>
+{% endblock %}
