@@ -112,17 +112,11 @@
     </a>
 
     {% with property.images.first as image %}
-        {% if image %}
-            <img
-                src="{{ image.image_url }}"
-                alt="{{ property.title }}"
-                class="property-image">
-        {% else %}
-            <img
-                src="https://via.placeholder.com/900x500"
-                alt="No image available"
-                class="property-image">
-        {% endif %}
+    {% if image %}
+    <img src="{{ image.image_url }}" alt="{{ property.title }}" class="property-image">
+    {% else %}
+    <img src="https://via.placeholder.com/900x500" alt="No image available" class="property-image">
+    {% endif %}
     {% endwith %}
 
     <div class="property-header">
