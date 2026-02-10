@@ -24,5 +24,5 @@ class PropertyAdmin(admin.ModelAdmin):
 
 @admin.register(Image)
 class ImageAdmin(admin.ModelAdmin):
-    list_display = ['property', 'image_url', 'is_primary']
+    list_display = ['property', 'image', 'is_primary']
     list_filter = ['is_primary']
