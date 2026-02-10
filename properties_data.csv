@@ -1,11 +1,11 @@
-location_name,country,state,city,title,description,price_per_night,bedrooms,bathrooms,max_guests,image_url
-Destin Florida,USA,Florida,Destin,Luxury Beach House with Ocean View,Beautiful beachfront property with stunning ocean views and private beach access,350.00,4,3,8,https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf
-Miami Beach,USA,Florida,Miami,Modern Condo in South Beach,Stylish condo in the heart of South Beach with pool and gym access,275.00,2,2,4,https://images.unsplash.com/photo-1512917774080-9991f1c4c750
-Orlando Disney,USA,Florida,Orlando,Family Villa Near Theme Parks,Spacious villa perfect for families visiting Disney and Universal Studios,225.00,5,3,10,https://images.unsplash.com/photo-1580587771525-78b9dba3b914
-Key West Paradise,USA,Florida,Key West,Tropical Retreat with Pool,Charming tropical home with heated pool and sunset views,300.00,3,2,6,https://images.unsplash.com/photo-1600585154340-be6161a56a0c
-Malibu Beachfront,USA,California,Malibu,Stunning Malibu Beach House,Exclusive beachfront property with panoramic ocean views,550.00,5,4,10,https://images.unsplash.com/photo-1613490493576-7fde63acd811
-San Francisco Victorian,USA,California,San Francisco,Historic Victorian Home,Beautifully restored Victorian in Pacific Heights neighborhood,425.00,3,2,6,https://images.unsplash.com/photo-1600585154340-be6161a56a0c
-Lake Tahoe Cabin,USA,California,South Lake Tahoe,Cozy Mountain Cabin with Lake Views,Rustic cabin perfect for skiing and summer lake activities,295.00,3,2,6,https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf
-Paris Apartment,France,,Paris,Elegant Parisian Apartment,Charming apartment in Le Marais with classic French architecture,380.00,2,1,4,https://images.unsplash.com/photo-1502672260266-1c1ef2d93688
-London Townhouse,UK,,London,Modern Townhouse in Kensington,Contemporary townhouse near museums and shopping,475.00,4,3,8,https://images.unsplash.com/photo-1580587771525-78b9dba3b914
-Tokyo Central,Japan,,Tokyo,Sleek Tokyo Apartment,Modern apartment in Shibuya with city views,320.00,1,1,2,https://images.unsplash.com/photo-1600585154340-be6161a56a0c
+location_name,country,state,city,title,description,price_per_night,bedrooms,bathrooms,max_guests
+Destin Florida,USA,Florida,Destin,Luxury Beach House with Ocean View,Beautiful beachfront property with stunning ocean views and private beach access,350.00,4,3,8
+Miami Beach,USA,Florida,Miami,Modern Condo in South Beach,Stylish condo in the heart of South Beach with pool and gym access,275.00,2,2,4
+Orlando Disney,USA,Florida,Orlando,Family Villa Near Theme Parks,Spacious villa perfect for families visiting Disney and Universal Studios,225.00,5,3,10
+Key West Paradise,USA,Florida,Key West,Tropical Retreat with Pool,Charming tropical home with heated pool and sunset views,300.00,3,2,6
+Malibu Beachfront,USA,California,Malibu,Stunning Malibu Beach House,Exclusive beachfront property with panoramic ocean views,550.00,5,4,10
+San Francisco Victorian,USA,California,San Francisco,Historic Victorian Home,Beautifully restored Victorian in Pacific Heights neighborhood,425.00,3,2,6
+Lake Tahoe Cabin,USA,California,South Lake Tahoe,Cozy Mountain Cabin with Lake Views,Rustic cabin perfect for skiing and summer lake activities,295.00,3,2,6
+Paris Apartment,France,,Paris,Elegant Parisian Apartment,Charming apartment in Le Marais with classic French architecture,380.00,2,1,4
+London Townhouse,UK,,London,Modern Townhouse in Kensington,Contemporary townhouse near museums and shopping,475.00,4,3,8
+Tokyo Central,Japan,,Tokyo,Sleek Tokyo Apartment,Modern apartment in Shibuya with city views,320.00,1,1,2
