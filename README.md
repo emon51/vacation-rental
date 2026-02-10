@@ -30,26 +30,26 @@ A Django-based web application for managing and browsing vacation rental propert
 
 1. **Clone the repository**
 ```bash
-   git clone https://github.com/emon51/vacation-rental.git
+git clone https://github.com/emon51/vacation-rental.git
 ```
 2. **Change directory**
 ```bash
-   cd vacation-rental
+cd vacation-rental
 ```
 
 3. **Create virtual environment**
 ```bash
-   python3 -m venv venv
+python3 -m venv venv
 ```
 4. **Activate vurtual environment**
 
 On Linux
 ```bash
-   source venv/bin/activate
+source venv/bin/activate
 ```
 On Windows
 ```bash
-   venv\Scripts\activate
+venv\Scripts\activate
 ```
 
 
@@ -60,23 +60,23 @@ pip install -r requirements.txt
 
 6. **Run migrations**
 ```bash
-   python manage.py makemigrations
-   python manage.py migrate
+python manage.py makemigrations
+python manage.py migrate
 ```
 
 7. **Create superuser**
 ```bash
-   python manage.py createsuperuser
+python manage.py createsuperuser
 ```
 
 8. **Import sample data**
 ```bash
-   python manage.py import_csv properties_data.csv
+python manage.py import_csv properties_data.csv
 ```
 
 9. **Run development server**
 ```bash
-   python manage.py runserver
+python manage.py runserver
 ```
 
 10. **Access the application**
@@ -84,10 +84,11 @@ pip install -r requirements.txt
    - Admin Panel: http://127.0.0.1:8000/admin/
    - Properties List: http://127.0.0.1:8000/property-list/
 
+   **Note**: Initially, the frontend pages will display without images. You can upload single or multiple images from your local storage for any property through the admin panel. Navigate to **Images** --> Click **Add Image** --> Select property from dropdown --> Choose image file --> Check **Is primary** for the first image --> Click **Save**. The uploaded images will be stored in the `media/property_images/` directory. You can also use my uploaded sample images from `media/property_images/` directory.
+
 ## Project Structure
 ```
-rental/
-├── vacation_rental/               # Project settings
+vacation_rental/               # Project settings
 │   ├── settings.py
 │   ├── urls.py
 │   └── wsgi.py
