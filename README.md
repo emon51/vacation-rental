@@ -116,6 +116,7 @@ vacation-rental/               # Project settings
 │   └── property_images/
 ├── properties_data.csv            # Sample data (Generated using AI)
 ├── manage.py
+├── .gitignore
 └── README.md
 ```
 
@@ -162,7 +163,7 @@ vacation-rental/               # Project settings
 
 ### Importing from CSV
 
-CSV file format:
+CSV file format example:
 ```csv
 location_name,country,state,city,title,description,price_per_night,bedrooms,bathrooms,max_guests
 Destin Florida,USA,Florida,Destin,Beach House,Description,350.00,4,3,8
@@ -214,16 +215,11 @@ python manage.py migrate
 
 ### Image Carousel
 - Left/right navigation buttons
-- Keyboard support (arrow keys)
 - Image counter (e.g., "1 / 5")
-- Buttons hidden at first/last images
-- Smooth transitions
 
 ### Search Features
 - Real-time autocomplete
-- Debounced API calls (300ms)
 - Supports city, state, country searches
-- AND logic for multiple search terms
 - Case-insensitive matching
 
 ### Admin Features
