@@ -1,6 +1,6 @@
 import csv
 from django.core.management.base import BaseCommand
-from properties.models import Location, Property, Image
+from properties.models import Location, Property
 
 
 class Command(BaseCommand):
@@ -37,16 +37,8 @@ class Command(BaseCommand):
                     max_guests=row['max_guests']
                 )
                 
-                # Create image
-                if row['image_url']:
-                    Image.objects.create(
-                        property=property_obj,
-                        image_url=row['image_url'],
-                        is_primary=True
-                    )
-                
                 self.stdout.write(
                     self.style.SUCCESS(f'Successfully imported: {property_obj.title}')
                 )
         
-        self.stdout.write(self.style.SUCCESS('CSV import completed!'))
+        self.stdout.write(self.style.SUCCESS('CSV import completed! Images can be uploaded via admin panel.'))
