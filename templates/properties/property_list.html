@@ -129,9 +129,9 @@
     <div class="property-card">
         {% with property.images.first as image %}
         {% if image %}
-        <img src="{{ image.image_url }}" alt="{{ property.title }}">
+        <img src="{{ image.image.url }}" alt="{{ property.title }}">
         {% else %}
-        <img src="https://via.placeholder.com/350x250" alt="No image">
+        <img src="https://via.placeholder.com/350x250?text=No+Image" alt="No image">
         {% endif %}
         {% endwith %}
         <div class="property-info">
