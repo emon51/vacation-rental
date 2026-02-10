@@ -86,14 +86,14 @@ python manage.py runserver
 
    **Note**: Initially, the frontend pages will display without images. You can upload single or multiple images from your local storage for any property through the admin panel. 
    ### Please follow these steps to upload images:
-   - Navigate to **Images** model from **PROPERTIES** section ==> Click **Add Image** --> Select property from dropdown
-   - ==> Choose image file --> Check **Is primary** for the first image --> Click **Save**.
+   - Navigate to **Images** model from **PROPERTIES** section ==> Click **Add Image** ==> Select property from dropdown
+   - ==> Choose image file ==> Check **Is primary** for the first image ==> Click **Save**.
    - The uploaded images will be stored in the `media/property_images/` directory.
    - You can also use my uploaded sample images from `media/property_images/` directory.
 
 ## Project Structure
 ```
-vacation-rental/               # Project settings
+vacation-rental/                   # Project settings
 │   ├── settings.py
 │   ├── urls.py
 │   └── wsgi.py
