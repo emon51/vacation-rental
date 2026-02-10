@@ -1,8 +1,6 @@
 {% extends 'properties/base.html' %}
 
-{% block title %}
-{{ property.title }} - Vacation Rentals
-{% endblock %}
+{% block title %}{{ property.title }} - Vacation Rentals{% endblock %}
 
 {% block extra_css %}
 <style>
@@ -22,12 +20,82 @@
         text-decoration: underline;
     }
 
-    .property-image {
+    .property-images {
+        margin-bottom: 30px;
+        position: relative;
+    }
+
+    .image-carousel {
+        position: relative;
         width: 100%;
         height: 500px;
-        object-fit: cover;
+        overflow: hidden;
         border-radius: 8px;
-        margin-bottom: 30px;
+    }
+
+    .carousel-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: none;
+    }
+
+    .carousel-image.active {
+        display: block;
+    }
+
+    .carousel-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(0, 0, 0, 0.5);
+        color: white;
+        border: none;
+        padding: 15px 20px;
+        cursor: pointer;
+        font-size: 1.5rem;
+        border-radius: 4px;
+        transition: background 0.3s;
+    }
+
+    .carousel-btn:hover {
+        background: rgba(0, 0, 0, 0.8);
+    }
+
+    .carousel-btn.prev {
+        left: 10px;
+    }
+
+    .carousel-btn.next {
+        right: 10px;
+    }
+
+    .carousel-btn.hidden {
+        display: none;
+    }
+
+    .image-counter {
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: rgba(0, 0, 0, 0.6);
+        color: white;
+        padding: 8px 15px;
+        border-radius: 20px;
+        font-size: 0.9rem;
+    }
+
+    .no-image {
+        width: 100%;
+        height: 500px;
+        background: #ecf0f1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 8px;
+        color: #7f8c8d;
+        font-size: 1.2rem;
     }
 
     .property-header {
@@ -51,11 +119,6 @@
         color: #27ae60;
         font-weight: bold;
         margin-bottom: 20px;
-    }
-
-    .property-price span {
-        font-size: 1rem;
-        color: #7f8c8d;
     }
 
     .property-stats {
@@ -106,30 +169,36 @@
 
 {% block content %}
 <div class="property-detail">
+    <a href="{% url 'properties:property-list' %}" class="back-link">← Back to Search</a>
 
-    <a href="{% url 'properties:property-list' %}" class="back-link">
-        ← Back to Search
-    </a>
+    <div class="property-images">
+        {% with property.images.all as images %}
+        {% if images %}
+        <div class="image-carousel">
+            {% for image in images %}
+            <img src="{{ image.image.url }}" alt="{{ property.title }}"
+                class="carousel-image {% if forloop.first %}active{% endif %}">
+            {% endfor %}
 
-    {% with property.images.first as image %}
-    {% if image %}
-    <img src="{{ image.image_url }}" alt="{{ property.title }}" class="property-image">
-    {% else %}
-    <img src="https://via.placeholder.com/900x500" alt="No image available" class="property-image">
-    {% endif %}
-    {% endwith %}
+            {% if images|length > 1 %}
+            <button class="carousel-btn prev" id="prev-btn" onclick="changeImage(-1)">❮</button>
+            <button class="carousel-btn next" id="next-btn" onclick="changeImage(1)">❯</button>
+            <div class="image-counter">
+                <span id="current-image">1</span> / <span id="total-images">{{ images|length }}</span>
+            </div>
+            {% endif %}
+        </div>
+        {% else %}
+        <div class="no-image">No images available</div>
+        {% endif %}
+        {% endwith %}
+    </div>
 
     <div class="property-header">
         <h2>{{ property.title }}</h2>
-
-        <p class="property-location">
-            📍 {{ property.location }}
-        </p>
-
-        <div class="property-price">
-            ${{ property.price_per_night }}
-            <span>/night</span>
-        </div>
+        <p class="property-location">📍 {{ property.location }}</p>
+        <div class="property-price">${{ property.price_per_night }} <span
+                style="font-size: 1rem; color: #7f8c8d;">/night</span></div>
     </div>
 
     <div class="property-stats">
@@ -138,13 +207,11 @@
             <div class="label">Bedrooms</div>
             <div class="value">{{ property.bedrooms }}</div>
         </div>
-
         <div class="stat-item">
             <div class="icon">🚿</div>
             <div class="label">Bathrooms</div>
             <div class="value">{{ property.bathrooms }}</div>
         </div>
-
         <div class="stat-item">
             <div class="icon">👥</div>
             <div class="label">Max Guests</div>
@@ -156,6 +223,60 @@
         <h3>Description</h3>
         <p>{{ property.description }}</p>
     </div>
-
 </div>
+
+<script>
+    let currentImageIndex = 0;
+    const images = document.querySelectorAll('.carousel-image');
+    const totalImages = images.length;
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+
+    function updateButtons() {
+        // Hide prev button on first image
+        if (currentImageIndex === 0) {
+            prevBtn.classList.add('hidden');
+        } else {
+            prevBtn.classList.remove('hidden');
+        }
+
+        // Hide next button on last image
+        if (currentImageIndex === totalImages - 1) {
+            nextBtn.classList.add('hidden');
+        } else {
+            nextBtn.classList.remove('hidden');
+        }
+    }
+
+    function showImage(index) {
+        images.forEach(img => img.classList.remove('active'));
+        images[index].classList.add('active');
+        document.getElementById('current-image').textContent = index + 1;
+        updateButtons();
+    }
+
+    function changeImage(direction) {
+        const newIndex = currentImageIndex + direction;
+
+        // Prevent going beyond boundaries
+        if (newIndex < 0 || newIndex >= totalImages) {
+            return;
+        }
+
+        currentImageIndex = newIndex;
+        showImage(currentImageIndex);
+    }
+
+    // Keyboard navigation
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'ArrowLeft') {
+            changeImage(-1);
+        } else if (e.key === 'ArrowRight') {
+            changeImage(1);
+        }
+    });
+
+    // Initialize buttons on page load
+    updateButtons();
+</script>
 {% endblock %}
