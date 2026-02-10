@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator
 from django.http import JsonResponse
 from django.db.models import Q
+from django.conf import settings
 from .models import Property, Location
 
 
@@ -36,7 +37,7 @@ def property_list(request):
                 )
     
     properties = properties.distinct()
-    paginator = Paginator(properties, 6)
+    paginator = Paginator(properties, settings.PROPERTIES_PER_PAGE)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     
